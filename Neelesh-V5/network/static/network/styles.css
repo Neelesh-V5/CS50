@@ -1,0 +1,51 @@
+#new-post{
+    border:1.5px solid black;
+    padding: 16px;
+    margin:2%;
+}
+
+.f-create textarea{
+    display:block;
+    width: 75%;
+    margin:1% auto;
+    padding: 5px;
+    max-width: 750px;
+}
+
+.f-create input{
+    margin: auto 45%;
+}
+
+@media only screen and (max-width: 992px) {
+    .f-create textarea{
+        width: 90%;
+    }
+    .f-create input{
+        margin: auto 40%;
+    }
+}
+
+.page-item.pointer{
+    cursor: pointer;
+}
+
+.post{
+    margin: 16px;
+}
+
+#follow-btn{
+    margin: 16px 0px;
+}
+
+#profile-head{
+    border: 1px solid black;
+    max-width: max-content;
+    margin: 16px ;
+    padding: 16px;
+}
+
+/* .edit-btn{
+    color : rgb(255, 255, 255);
+    background-color : rgb(0, 103, 214);
+    border-bottom-color : rgb(0, 96, 201);
+} */

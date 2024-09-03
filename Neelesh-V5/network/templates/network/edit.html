@@ -1,0 +1,15 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<div id="new-post">
+    <h3>New Post</h3>
+    <form class="f-create" action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Edit" class="btn btn-primary">
+    </form>
+</div>
+{% endif %}
+
+{% endblock %}

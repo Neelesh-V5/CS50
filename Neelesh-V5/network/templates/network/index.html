@@ -1,0 +1,58 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<div id="new-post">
+    <h3>New Post</h3>
+    <form class="f-create" action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Post" class="btn btn-primary">
+    </form>
+</div>
+{% endif %}
+
+<div class="container">
+    {% for post in page_obj %}
+    <div>
+        <div class="card post" data-post="{{post.id}}">
+            <div class="card-body">
+                <a style="color:black;" class="card-link" href="{% url 'profile' post.poster.id %}">
+                    <h5 class="card-title">{{post.poster.username}}</h5>
+                </a>
+                <p class="p-contents card-text">{{post.contents}}</p>
+                <h6 class="card-subtitle mb-2 text-muted">{{post.timestamp}}</h6>
+                {% if post.edited %}
+                <span>
+                    <h6 class="text-muted"><b>Last edited on:</b> {{post.last_mod}}</h6>
+                </span>
+                {% endif %}
+
+                <div style="margin:4px 0px 0px;padding: 4px 0px;">
+                    {% if user.is_authenticated %}<i data-post="{{post.id}}" class="like-btn fa-regular fa-heart fa-lg" style="color: #f58484;"></i>{% endif %}
+                    <span style="line-height: .05em;" class="l-count" data-post="{{post.id}}">{{post.likes}}</span>
+                </div>
+                <br>
+                {% if request.user == post.poster %}
+                <btn class="edit-btn btn btn-primary" href="">Edit</btn>
+                {% endif %}
+                <!-- <a href = "" class="card-link text-muted">Comment</a> -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {% if prev %}
+            <li class="page-item index-pi" data-page="prev"><a class="page-link">Previous</a></li>
+            {% endif %}
+            {% if next %}
+            <li class="page-item index-pi" data-page="next"><a class="page-link">Next</a></li>
+            {% endif %}
+        </ul>
+
+    </nav>
+</div>
+
+
+{% endblock %}
